@@ -1,0 +1,18 @@
+data: ./data/wikitext     # data corpus
+model: LSTM               # RNN_TANH, RNN_RELU, LSTM, GRU
+emsize: 200               # size of word embeddings
+nhidden: 200              # number of hidden units per layer
+nlayers: 2
+seq_len: 35        # sequence length
+dropout: 0.2
+seed: 1111                # random seed
+cuda: True
+log_interval: 200
+save: model.pt
+nhead: 2                  # the number of heads in the encoder/decoder of the transformer model
+
+lr: 20
+clip: 0.25                # radient clipping
+epochs: 40
+batch_size: 20
+

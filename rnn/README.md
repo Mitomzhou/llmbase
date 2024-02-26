@@ -1,0 +1,1 @@
+RNN预测句子后一个单词，如 Never too old to learn -> english.
