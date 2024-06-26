@@ -6,14 +6,14 @@ import numpy as np
 
 
 yelp_review_full = "/workspace/data/yelp_review_full"
-bert_base_cased = "/workspace/model/bert-base-cased"
+model_checkpoint = "/workspace/model/bert-base-cased"
 
 # 1.加载数据集
 dataset = load_dataset(yelp_review_full)
 print(dataset)
 
 # 2.加载模型
-tokenizer = AutoTokenizer.from_pretrained(bert_base_cased)
+tokenizer = AutoTokenizer.from_pretrained(model_checkpoint)
 
 # 3.对原始数据进行预处理
 def tokenize_function(examples):
@@ -26,7 +26,7 @@ train_dataset = tokenized_datasets["train"].shuffle(seed=32).select(range(1000))
 test_dataset = tokenized_datasets["test"].shuffle(seed=32).select(range(1000))
 
 # 4.带有序列分类的模型加载
-model = AutoModelForSequenceClassification.from_pretrained(bert_base_cased, num_labels=5)
+model = AutoModelForSequenceClassification.from_pretrained(model_checkpoint, num_labels=5)
 
 model_dir = "/workspace/model/bert-base-cased-finetune-yelp"
 
