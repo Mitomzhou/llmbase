@@ -22,8 +22,8 @@ def tokenize_function(examples):
 
 tokenized_datasets = dataset.map(tokenize_function, batched=True)
 
-train_dataset = tokenized_datasets["train"].shuffle(seed=32).select(range(1000))
-test_dataset = tokenized_datasets["test"].shuffle(seed=32).select(range(1000))
+train_dataset = tokenized_datasets["train"].shuffle(seed=32).select(range(100))
+test_dataset = tokenized_datasets["test"].shuffle(seed=32).select(range(100))
 
 # 4.带有序列分类的模型加载
 model = AutoModelForSequenceClassification.from_pretrained(model_checkpoint, num_labels=5)
@@ -41,11 +41,11 @@ def compute_metrics(eval_pred):
 # 6.定义训练参数
 training_args = TrainingArguments(output_dir=model_dir,
                                   per_device_train_batch_size=16,
-                                  num_train_epochs=3,
+                                  num_train_epochs=1,
                                   logging_steps=100,
                                   evaluation_strategy="steps",  # 在每个 steps 后进行评估
-                                  save_steps=500,
-                                  eval_steps=500,
+                                  save_steps=100,
+                                  eval_steps=100,
                                   )
 # 7.微调bert模型
 trainer = Trainer(model=model,
@@ -58,5 +58,5 @@ trainer.train()
 trainer.save_model()
 
 # 8. 输出评估结果
-results = trainer.evaluate(model_dir)
+results = trainer.evaluate(test_dataset)
 print("Results:", results)

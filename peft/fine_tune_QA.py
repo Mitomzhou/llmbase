@@ -9,6 +9,7 @@ model_dir = "/workspace/model/distilbert-base-uncased-finetune-squadv2"
 
 datasets = load_dataset(data_path)
 print(datasets)
+
 tokenizer = AutoTokenizer.from_pretrained(model_checkpoint)
 
 pad_on_right = tokenizer.padding_side == "right"
