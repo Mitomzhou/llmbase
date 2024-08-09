@@ -19,7 +19,6 @@ import gc
 ##################################################################
 # 1. 加载lora微调后的模型
 ##################################################################
-model_dir = "/workspace/model/whisper-large-v3"
 model_dir_lora_int8 = "/workspace/model/whisper-large-v3-int8"
 language = "Chinese (China)"
 language_abbr = "zh-CN"
